@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Хочешь кое-что?</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Playfair+Display:ital,wght@1,600;1,700&family=Nunito:wght@500;700;800&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- 1. question -->
+<section class="scene" id="ask" aria-labelledby="askTitle">
+  <p class="kicker">слушай…</p>
+  <h1 id="askTitle">Хочешь кое-что?</h1>
+  <div class="choices">
+    <button class="btn btn-yes" id="yesBtn" type="button">Да</button>
+    <button class="btn btn-no" id="noBtn" type="button">Нет</button>
+  </div>
+  <p class="heart-row" aria-hidden="true">♥ ♥ ♥</p>
+</section>
+
+<!-- 2. "no" -->
+<section class="scene" id="nope" hidden aria-labelledby="nopeTitle">
+  <div class="face" aria-hidden="true">🙃</div>
+  <h2 id="nopeTitle">Эй, бодро ты нажала, конечно…</h2>
+  <p>…но подумай ещё раз. Там правда кое-что хорошее.</p>
+  <button class="btn btn-yes" id="backBtn" type="button">Вернуться назад</button>
+</section>
+
+<!-- 3. gift -->
+<section class="scene" id="gift" hidden aria-label="Подарок: букет в вазе и котик с конвертом">
+  <canvas id="room" aria-hidden="true"></canvas>
+  <h2 class="gift-title">Это всё тебе ♥</h2>
+  <div class="stage" id="stage">
+    <div class="cat" id="cat">
+      <img id="catImg" src="assets/cat.webp" alt="">
+      <button class="mini-env" id="miniEnv" type="button" aria-label="Открыть конверт: нажми на меня">
+        <svg viewBox="0 0 200 136" aria-hidden="true">
+          <defs>
+            <linearGradient id="eg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffd5e2"/><stop offset="1" stop-color="#f3a6c0"/></linearGradient>
+            <linearGradient id="ef" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe0ea"/><stop offset="1" stop-color="#f7b6cb"/></linearGradient>
+            <radialGradient id="ws" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#ff6f9f"/><stop offset=".6" stop-color="#c2134f"/><stop offset="1" stop-color="#8d0b38"/></radialGradient>
+          </defs>
+          <rect x="2" y="2" width="196" height="132" rx="6" fill="url(#eg)"/>
+          <path d="M2 132 L84 66 M198 132 L116 66" stroke="#e595b0" stroke-width="2"/>
+          <path d="M4 4 L100 76 L196 4 Z" fill="url(#ef)" stroke="#e595b0" stroke-width="2" stroke-linejoin="round"/>
+          <text x="100" y="116" text-anchor="middle" font-family="Caveat, cursive" font-weight="700" font-size="30" fill="#7a1f45">нажми на меня</text>
+          <circle cx="100" cy="76" r="15" fill="url(#ws)"/>
+          <path d="M100 72 c-3 -5 -10 -2 -7 3 l7 7 l7 -7 c3 -5 -4 -8 -7 -3z" fill="#ffd1df" opacity=".9"/>
+        </svg>
+      </button>
+    </div>
+    <p class="hint" id="hint">кажется,<br>это тебе ↓</p>
+  </div>
+</section>
+
+<canvas id="petals" hidden></canvas>
+
+<div class="overlay" id="overlay" hidden>
+  <div class="env" id="env">
+    <div class="back"></div>
+    <div class="sheet"><span>Малике ♥</span></div>
+    <div class="front"></div>
+    <div class="flap"></div>
+    <div class="seal">♥</div>
+  </div>
+</div>
+
+<article class="letter" id="letter" hidden aria-label="Письмо">
+  <div class="scroll" id="letterText">
+    <figure class="page" id="page">
+      <img src="assets/letter.webp" alt="Дорогая Малика, хочу сказать тебе, что ты стала для меня очень дорогим человеком. Хоть наша встреча и была случайной, с того момента мои глаза по-настоящему зажглись. Я знаю, что сейчас между нами много километров, но что бы я ни делал, куда бы ни шёл, мои мысли всё равно возвращаются к тебе. Я скучаю по тебе и с каждым днём всё сильнее жду нашей встречи. Совсем скоро мы снова увидимся, ты и заметить не успеешь. А пока пусть эти цветы хотя бы немного напомнят тебе обо мне. Твой Р.">
+      <figcaption class="sign">Твой Р ❤️</figcaption>
+    </figure>
+    <p class="zoom-hint" id="zoomHint">нажми на письмо, чтобы увеличить</p>
+  </div>
+  <footer><button class="btn-small" id="closeLetter" type="button">Закрыть письмо</button></footer>
+</article>
+
+<script src="script.js"></script>
+</body>
+</html>
