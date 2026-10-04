@@ -6,7 +6,7 @@
   <title>Хочешь кое-что?</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Playfair+Display:ital,wght@1,600;1,700&family=Nunito:wght@500;700;800&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Marck+Script&family=Playfair+Display:ital,wght@1,600;1,700&family=Nunito:wght@500;700;800&display=swap">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -70,11 +70,14 @@
 
 <article class="letter" id="letter" hidden aria-label="Письмо">
   <div class="scroll" id="letterText">
-    <figure class="page" id="page">
-      <img src="assets/letter.webp" alt="Дорогая Малика, хочу сказать тебе, что ты стала для меня очень дорогим человеком. Хоть наша встреча и была случайной, с того момента мои глаза по-настоящему зажглись. Я знаю, что сейчас между нами много километров, но что бы я ни делал, куда бы ни шёл, мои мысли всё равно возвращаются к тебе. Я скучаю по тебе и с каждым днём всё сильнее жду нашей встречи. Совсем скоро мы снова увидимся, ты и заметить не успеешь. А пока пусть эти цветы хотя бы немного напомнят тебе обо мне. Твой Р.">
-      <figcaption class="sign">Твой Р ❤️</figcaption>
-    </figure>
-    <p class="zoom-hint" id="zoomHint">нажми на письмо, чтобы увеличить</p>
+    <div class="page" id="page">
+      <p class="hi">Дорогая Малика,</p>
+      <p>хочу сказать тебе, что ты стала для меня очень дорогим человеком. Хоть наша встреча и была случайной, с того момента мои глаза по-настоящему зажглись.</p>
+      <p>Я знаю, что сейчас между нами много километров, но что бы я ни делал, куда бы ни шёл, мои мысли всё равно возвращаются к тебе. Я скучаю по тебе и с каждым днём всё сильнее жду нашей встречи.</p>
+      <p>Совсем скоро мы снова увидимся, ты и заметить не успеешь. А пока пусть эти цветы хотя бы немного напомнят тебе обо мне.</p>
+      <p class="sign">Твой Р ❤️</p>
+    </div>
+    <p class="skip-hint" id="skipHint">нажми на письмо, чтобы дописать сразу</p>
   </div>
   <footer><button class="btn-small" id="closeLetter" type="button">Закрыть письмо</button></footer>
 </article>

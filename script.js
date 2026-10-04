@@ -1047,16 +1047,58 @@
     const letter = $('letter');
     letter.hidden = false; void letter.offsetWidth; letter.classList.add('show');
     $('letterText').scrollTop = 0;
+    setTimeout(writeLetter, 500);
     await wait(450);
     ov.hidden = true;
     $('closeLetter').focus({preventScroll:true});
   }
-  $('page').addEventListener('click', () => {
-    const l = $('letter'); l.classList.toggle('zoomed');
-    $('zoomHint').textContent = l.classList.contains('zoomed') ? 'нажми ещё раз, чтобы уменьшить' : 'нажми на письмо, чтобы увеличить';
-  });
+  /* ---------- handwriting: every word sits a little differently and is written in order ---------- */
+  (function prepHandwriting(){
+    const r = rng(1503);
+    document.querySelectorAll('#page p').forEach(p => {
+      const words = p.textContent.trim().split(/\s+/);
+      p.textContent = '';
+      words.forEach((w,i) => {
+        const s = document.createElement('span');
+        s.className = 'w'; s.textContent = w;
+        const rot = (r()-.5)*1.8, dy = (r()-.5)*3, sc = .96 + r()*.08, op = .86 + r()*.14;
+        s.style.transform = `translateY(${dy.toFixed(1)}px) rotate(${rot.toFixed(2)}deg) scale(${sc.toFixed(3)})`;
+        s.style.opacity = op.toFixed(2);
+        s.style.setProperty('--d', (w.length*0.07 + .08).toFixed(2) + 's');
+        p.appendChild(s);
+        if (i < words.length-1) p.appendChild(document.createTextNode(' '));
+      });
+    });
+  })();
+  let writeTimer = null;
+  function writeLetter(){
+    const page = $('page');
+    const words = [...page.querySelectorAll('.w')];
+    page.classList.remove('done'); page.classList.add('writing');
+    words.forEach(w => w.classList.remove('on'));
+    $('skipHint').style.opacity = 1;
+    if (reduce){ finishLetter(); return; }
+    let i = 0;
+    const next = () => {
+      if (i >= words.length){ finishLetter(); return; }
+      const w = words[i++];
+      w.classList.add('on');
+      const top = w.offsetTop - $('letterText').clientHeight*.6;
+      if (top > $('letterText').scrollTop) $('letterText').scrollTo({top, behavior:'smooth'});
+      writeTimer = setTimeout(next, (w.textContent.length*70 + 110));
+    };
+    next();
+  }
+  function finishLetter(){
+    clearTimeout(writeTimer);
+    const page = $('page');
+    page.classList.add('done'); page.classList.remove('writing');
+    $('skipHint').style.opacity = 0;
+  }
+  $('page').addEventListener('click', finishLetter);
+
   $('closeLetter').addEventListener('click', async () => {
-    $('letter').classList.remove('zoomed');
+    finishLetter();
     const letter = $('letter');
     letter.classList.remove('show');
     $('overlay').classList.remove('dim');

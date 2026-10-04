@@ -179,12 +179,28 @@ h1{
 }
 .letter.show{transform:translate(-50%,-50%) rotate(-1deg); opacity:1}
 .letter{background:#fcf8f0}
-.letter .scroll{overflow:auto; padding:14px 14px 4px; text-align:center; overscroll-behavior:contain}
-.page{position:relative; margin:0; container-type:inline-size; cursor:zoom-in; transition:width .35s ease; width:100%; box-shadow:0 1px 3px rgba(60,30,20,.12)}
-.page img{display:block; width:100%; height:auto; border-radius:2px}
-.page .sign{position:absolute; right:8%; bottom:.4%; margin:0; font-family:var(--hand); font-weight:700; font-size:7.2cqw; color:#1c2a78; transform:rotate(-4deg)}
-.letter.zoomed .page{width:175%; cursor:zoom-out}
-.zoom-hint{margin:8px 0 0; font:600 13px/1.3 var(--body); color:var(--ink-soft)}
+.letter .scroll{overflow:auto; padding:12px 12px 4px; overscroll-behavior:contain}
+.page{
+  position:relative; margin:0; text-align:left;
+  padding:26px 18px 30px 22px;
+  background-color:#fdfbf6;
+  background-image:
+    linear-gradient(rgba(96,128,196,.22) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(96,128,196,.22) 1px, transparent 1px);
+  background-size:26px 26px; background-position:-1px 12px;
+  box-shadow:0 1px 3px rgba(60,30,20,.12);
+  font-family:"Marck Script", var(--hand);
+  font-size:clamp(25px, 6.4vw, 31px); line-height:52px; color:#1d2c82;
+  cursor:pointer;
+}
+.page p{margin:0 0 52px; text-indent:1.2em}
+.page p.hi{text-indent:0; margin-bottom:0}
+.page p.sign{text-align:right; text-indent:0; margin:0}
+.page .w{display:inline-block; white-space:nowrap; text-indent:0; transform-origin:0 70%;
+  clip-path:inset(-20% 100% -40% -5%); transition:clip-path var(--d,.4s) linear}
+.page.writing .w.on, .page.done .w{clip-path:inset(-20% -5% -40% -5%)}
+.page.done .w{transition:none}
+.skip-hint{margin:8px 0 0; font:600 13px/1.3 var(--body); color:var(--ink-soft); text-align:center; transition:opacity .4s}
 .letter footer{display:flex; justify-content:center; padding:10px 16px 18px}
 .btn-small{font:700 15px/1 var(--body); padding:12px 22px; background:var(--hot); color:#fff; border:0; border-radius:999px; cursor:pointer}
 .btn-small:focus-visible{outline:3px solid var(--ink); outline-offset:3px}
